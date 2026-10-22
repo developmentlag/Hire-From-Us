@@ -1,0 +1,22 @@
+# Next.js
+.next/
+out/
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env*.local
+.env.local
+.env.production
+.env.development
+
+# Logs & temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Local leads backup
+data/leads/
