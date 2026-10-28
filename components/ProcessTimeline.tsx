@@ -7,25 +7,13 @@ import {
   UserCheck, 
   ArrowRight, 
   PhoneCall,
-  Sparkles,
-  MessageSquare
+  Sparkles
 } from 'lucide-react';
-
-interface ProcessTimelineProps {
-  onTalkToHiringTeam?: () => void;
-}
+import { portalInfo } from '@/data/portalData';
 
 const icons = [FileText, Users, Video, UserCheck];
 
-export default function ProcessTimeline({ onTalkToHiringTeam }: ProcessTimelineProps) {
-  const handleTalk = () => {
-    if (onTalkToHiringTeam) {
-      onTalkToHiringTeam();
-    } else {
-      window.open('https://wa.me/919136158245?text=Hello%20DIM%2C%20I%20would%20like%20to%20talk%20to%20your%20Hiring%20Team.', '_blank');
-    }
-  };
-
+export default function ProcessTimeline() {
   return (
     <section id="how-it-works" className="py-20 bg-slate-50 relative scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +26,7 @@ export default function ProcessTimeline({ onTalkToHiringTeam }: ProcessTimelineP
             How Hiring Works at DIM
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600">
-            Hire pre-screened talent in 4 simple steps without endless screening interviews or recruitment friction.
+            A straightforward process, with candidate availability confirmed before interviews are arranged.
           </p>
         </div>
 
@@ -92,13 +80,13 @@ export default function ProcessTimeline({ onTalkToHiringTeam }: ProcessTimelineP
             Our placement director and technical mentors can help you configure candidate assessments tailored to your stack.
           </p>
 
-          <button
-            onClick={handleTalk}
+          <a
+            href={portalInfo.phoneTel}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow-md shadow-blue-500/25 transition-all cursor-pointer"
           >
             <PhoneCall className="w-4 h-4 text-sky-300" />
-            <span>Talk to Our Hiring Team</span>
-          </button>
+            <span>Call {portalInfo.phone}</span>
+          </a>
         </div>
       </div>
     </section>

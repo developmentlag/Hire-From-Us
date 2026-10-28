@@ -1,27 +1,27 @@
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, Users, ArrowRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { GraduationCap, Users, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function TalentCategoryCards() {
   return (
-    <section className="py-16 bg-white relative">
+    <section className="relative bg-white py-20 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
             <Users className="w-3.5 h-3.5 text-blue-600" />
-            <span>Curated Talent Pipelines</span>
+            <span>Candidate Profiles</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Choose Your Candidate Pool
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600">
-            Whether you need prompt entry-level engineers for 24x7 monitoring and cloud operations or experienced DevOps architects to scale Kubernetes platforms.
+            Explore entry-level and experienced profiles, then confirm role fit and availability directly with our placement desk.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {/* Card 1 — Freshers & Entry-Level Talent */}
-          <div className="relative group bg-gradient-to-b from-sky-50/60 via-white to-blue-50/30 rounded-3xl border border-sky-200/90 hover:border-blue-400 p-8 sm:p-10 shadow-lg shadow-sky-500/5 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between">
+          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 bg-gradient-to-br from-sky-50/70 via-white to-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl sm:p-9">
             {/* Top Tag & Badge */}
             <div>
               <div className="flex items-center justify-between mb-6">
@@ -30,9 +30,9 @@ export default function TalentCategoryCards() {
                 </div>
                 <div className="text-right">
                   <span className="inline-block bg-sky-100 text-sky-900 text-xs font-extrabold px-3 py-1 rounded-full border border-sky-200">
-                    85+ Ready Now
+                    Freshers
                   </span>
-                  <p className="text-[11px] text-slate-500 mt-1 font-medium">Immediate / 15-Day Joining</p>
+                  <p className="text-[11px] text-slate-500 mt-1 font-medium">Ask about availability</p>
                 </div>
               </div>
 
@@ -40,7 +40,7 @@ export default function TalentCategoryCards() {
                 Freshers & Entry-Level Talent
               </h3>
               <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Pre-screened graduates with thorough training in Linux, AWS cloud administration, Docker, CI/CD, and real-time monitoring infrastructure.
+                Entry-level profiles with training in areas such as Linux, AWS, containers, CI/CD and monitoring. Skills and availability vary by candidate.
               </p>
 
               {/* Best for list */}
@@ -92,7 +92,7 @@ export default function TalentCategoryCards() {
           </div>
 
           {/* Card 2 — Experienced Professionals */}
-          <div className="relative group bg-gradient-to-b from-blue-50/70 via-white to-sky-50/30 rounded-3xl border border-blue-200/90 hover:border-blue-500 p-8 sm:p-10 shadow-lg shadow-blue-500/5 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between">
+          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 bg-gradient-to-br from-blue-50/70 via-white to-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl sm:p-9">
             {/* Top Tag & Badge */}
             <div>
               <div className="flex items-center justify-between mb-6">
@@ -101,9 +101,9 @@ export default function TalentCategoryCards() {
                 </div>
                 <div className="text-right">
                   <span className="inline-block bg-blue-100 text-blue-900 text-xs font-extrabold px-3 py-1 rounded-full border border-blue-200">
-                    2–5+ Years Exp
+                    Experienced
                   </span>
-                  <p className="text-[11px] text-slate-500 mt-1 font-medium">Screened & Project Verified</p>
+                  <p className="text-[11px] text-slate-500 mt-1 font-medium">Review each profile</p>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ export default function TalentCategoryCards() {
                 Experienced Professionals
               </h3>
               <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Skilled practitioners with hands-on experience in production environments, cloud migrations, Terraform IaC, Kubernetes clusters, and 24x7 incident response.
+                Experienced profiles for DevOps, cloud, platform, SRE and infrastructure roles. Review each person&apos;s experience and project details before interviewing.
               </p>
 
               {/* Best for list */}

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Hire Job-Ready DevOps & Cloud Talent | DIM — DevOps Institute of Mumbai',
-  description: 'Hire pre-screened freshers, Cloud Support Engineers, Monitoring Engineers, Junior DevOps, and experienced DevOps & Cloud professionals from DevOps Institute of Mumbai (DIM).',
+  title: 'Hire DevOps & Cloud Talent | DIM — DevOps Institute of Mumbai',
+  description: 'Explore DevOps and Cloud candidate profiles from DevOps Institute of Mumbai. Discuss role requirements, current availability and employer hiring support directly with the placement desk.',
   keywords: [
     'DevOps Hire',
     'Hire Cloud Engineers',
@@ -14,9 +14,14 @@ export const metadata: Metadata = {
     'DevOps Institute Mumbai Hiring'
   ],
   authors: [{ name: 'DevOps Institute of Mumbai' }],
+  icons: {
+    icon: '/favicon-white-larger.png',
+    shortcut: '/favicon-white-larger.png',
+    apple: '/favicon-white-larger.png',
+  },
   openGraph: {
     title: 'Hire Job-Ready DevOps & Cloud Talent | DIM',
-    description: 'Screened freshers and experienced DevOps, Cloud & Infrastructure talent ready for immediate interviews.',
+    description: 'Explore DevOps, Cloud and infrastructure candidate profiles and discuss current availability with the placement desk.',
     type: 'website',
   }
 };
@@ -32,7 +37,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="bg-slate-50 text-slate-900 antialiased min-h-screen">
+      <body className="bg-slate-50 text-slate-900 antialiased min-h-screen pb-16 sm:pb-0">
         {children}
       </body>
     </html>

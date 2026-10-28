@@ -7,13 +7,14 @@ import {
   Clock, 
   GraduationCap, 
   Briefcase, 
-  CheckCircle, 
+  CheckCircle,
   Award, 
   Layers, 
   Send,
-  Sparkles
+  Phone
 } from 'lucide-react';
 import { Candidate } from '@/data/candidates';
+import { portalInfo } from '@/data/portalData';
 
 interface ModalProps {
   candidate: Candidate | null;
@@ -53,9 +54,9 @@ export default function CandidateProfileModal({
             <div>
               <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="text-2xl font-bold text-white">{candidate.name}</h3>
-                <span className="bg-sky-400/30 text-sky-200 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-sky-300/30 flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-sky-300" />
-                  Verified DIM Profile
+                <span className="bg-white/10 text-sky-100 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-white/20 flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3 text-sky-200" />
+                  Candidate profile
                 </span>
               </div>
               <p className="text-sky-200 font-medium text-sm mt-1">{candidate.role}</p>
@@ -83,12 +84,10 @@ export default function CandidateProfileModal({
           {/* Best fit callout */}
           <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-blue-800">Target Role Match</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-blue-800">Profile focus</p>
               <p className="text-base font-bold text-slate-900 mt-0.5">{candidate.bestFit}</p>
             </div>
-            <span className="text-xs font-bold text-blue-700 bg-white px-3 py-1.5 rounded-xl border border-blue-200">
-              98% Skill Match
-            </span>
+            <span className="text-xs font-medium text-slate-600">Review against your requirements</span>
           </div>
 
           {/* Core Technical Skills */}
@@ -162,14 +161,23 @@ export default function CandidateProfileModal({
                 onRequestInterview(candidate);
                 onClose();
               }}
-              className="w-full sm:flex-1 py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-700 to-sky-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:flex-1 py-3.5 px-6 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <Send className="w-4 h-4" />
-              <span>Request Full Resume & Schedule Interview</span>
+              <span>Interview This Candidate</span>
             </button>
+
+            <a
+              href={portalInfo.phoneTel}
+              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap"
+            >
+              <Phone className="w-4 h-4 fill-slate-950" />
+              <span>Call: {portalInfo.phone}</span>
+            </a>
+
             <button
               onClick={onClose}
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 text-sm transition-colors cursor-pointer"
+              className="w-full sm:w-auto px-4 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 text-sm transition-colors cursor-pointer"
             >
               Close
             </button>

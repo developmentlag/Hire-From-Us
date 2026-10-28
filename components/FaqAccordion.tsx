@@ -36,9 +36,11 @@ export default function FaqAccordion() {
                 className="rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors overflow-hidden"
               >
                 <button
+                  type="button"
                   onClick={() => toggle(idx)}
                   className="w-full py-4 px-6 text-left flex items-center justify-between gap-4 cursor-pointer"
                   aria-expanded={isOpen}
+                  aria-controls={`employer-faq-answer-${idx}`}
                 >
                   <span className="font-bold text-slate-900 text-sm sm:text-base">
                     {faq.question}
@@ -48,11 +50,13 @@ export default function FaqAccordion() {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/60 bg-white animate-in fade-in duration-200">
-                    {faq.answer}
-                  </div>
-                )}
+                <div
+                  id={`employer-faq-answer-${idx}`}
+                  hidden={!isOpen}
+                  className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/60 bg-white"
+                >
+                  {faq.answer}
+                </div>
               </div>
             );
           })}

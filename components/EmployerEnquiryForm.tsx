@@ -19,6 +19,7 @@ import {
   Loader2,
   FileCheck
 } from 'lucide-react';
+import { portalInfo } from '@/data/portalData';
 
 interface FormProps {
   defaultRole?: string;
@@ -48,21 +49,6 @@ export default function EmployerEnquiryForm({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submissionId, setSubmissionId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  const fillSampleData = () => {
-    setCompanyName('HyperScale Cloud Ops Pvt Ltd');
-    setContactPerson('Rajesh Varma');
-    setEmail('rajesh.varma@hyperscaleops.com');
-    setPhone('+91 98201 44521');
-    setHiringRole('Cloud Support Engineer');
-    setExperienceRequired('Fresher / Entry-Level (0-1 yr)');
-    setSkillsRequired('AWS, Linux CLI, Prometheus, Grafana, CloudWatch, Docker');
-    setLocation('Mumbai (Andheri East) / Hybrid');
-    setOpenings('3 - 5 Openings');
-    setJdMode('paste');
-    setJdText('Looking for 3 Cloud Support & Monitoring Engineers to manage 24x7 client infrastructure, triage Prometheus/Grafana alerts, troubleshoot Linux web services and manage AWS EC2/S3/VPC environments.');
-    setErrorMessage('');
-  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -107,10 +93,13 @@ export default function EmployerEnquiryForm({
         throw new Error(data.error || 'Failed to submit request');
       }
 
-      setSubmissionId(data.submissionId || 'DIM-' + Math.floor(100000 + Math.random() * 900000));
+      if (typeof data.submissionId !== 'string' || !data.submissionId) {
+        throw new Error('We could not confirm delivery. Please call the placement desk.');
+      }
+      setSubmissionId(data.submissionId);
       setIsSubmitted(true);
-    } catch (err: any) {
-      setErrorMessage(err.message || 'Network error occurred while submitting your request. Please try again.');
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'Network error occurred while submitting your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -142,19 +131,8 @@ export default function EmployerEnquiryForm({
             Share Your Hiring Requirement
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            Tell us about your openings. We will match and dispatch pre-screened candidate profiles with hands-on capstone verifications within 24 to 48 hours.
+            Tell us about your opening. Our placement desk will follow up to discuss role fit and current candidate availability.
           </p>
-
-          <div className="mt-4 flex items-center justify-center">
-            <button
-              type="button"
-              onClick={fillSampleData}
-              className="text-xs font-semibold text-blue-600 bg-white hover:bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-sky-500" />
-              <span>Autofill Sample Requirement</span>
-            </button>
-          </div>
         </div>
 
         {isSubmitted ? (
@@ -168,25 +146,25 @@ export default function EmployerEnquiryForm({
             </span>
 
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
-              Shortlisted Profiles Are Being Prepared!
+              Your Hiring Request Was Sent
             </h3>
 
             <p className="text-slate-600 text-base max-w-xl mx-auto mb-6 leading-relaxed">
               Thank you, <span className="font-semibold text-slate-900">{contactPerson}</span> from <span className="font-semibold text-slate-900">{companyName}</span>. 
-              Our Technical Recruitment Lead for <span className="font-semibold text-blue-700">{hiringRole}</span> has received your requirement.
+              We sent your requirement for <span className="font-semibold text-blue-700">{hiringRole}</span> to the placement desk. The team will contact you to discuss the next steps and confirm current availability.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-8">
               <div>
-                <p className="text-xs text-slate-500 font-medium">Dedicated Manager</p>
-                <p className="text-sm font-bold text-slate-800">Siddharth Rao (DIM Tech)</p>
+                <p className="text-xs text-slate-500 font-medium">Next step</p>
+                <p className="text-sm font-bold text-slate-800">Placement desk follow-up</p>
               </div>
               <div>
-                <p className="text-xs text-slate-500 font-medium">Turnaround Time</p>
-                <p className="text-sm font-bold text-blue-700">Within 24 Hours</p>
+                <p className="text-xs text-slate-500 font-medium">Availability</p>
+                <p className="text-sm font-bold text-blue-700">Confirmed directly</p>
               </div>
               <div>
-                <p className="text-xs text-slate-500 font-medium">Notification Sent To</p>
+                <p className="text-xs text-slate-500 font-medium">Your email address</p>
                 <p className="text-sm font-bold text-slate-800 truncate">{email}</p>
               </div>
             </div>
@@ -199,12 +177,12 @@ export default function EmployerEnquiryForm({
                 Submit Another Requirement
               </button>
               <a
-                href={`https://wa.me/919136155079?text=Hello%20DevOps%20Institute%2C%20we%20just%20submitted%20a%20hiring%20requirement%20(Ref%3A%20${submissionId})`}
+                href={`https://wa.me/${portalInfo.whatsappNumber}?text=${encodeURIComponent(`Hello, I submitted a hiring requirement. Reference: ${submissionId}`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors text-sm shadow-md shadow-blue-500/20"
               >
-                Direct WhatsApp Sync with Lead
+                Message the Placement Desk
               </a>
             </div>
           </div>
@@ -212,7 +190,11 @@ export default function EmployerEnquiryForm({
           <div className="bg-white rounded-3xl border border-blue-200 p-6 sm:p-10 shadow-xl shadow-blue-500/5">
             {errorMessage && (
               <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium">
-                {errorMessage}
+                <p>{errorMessage}</p>
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                  <a href={portalInfo.phoneTel} className="font-bold underline">Call {portalInfo.phone}</a>
+                  <a href={`mailto:${portalInfo.email}`} className="font-bold underline">Email the placement desk</a>
+                </div>
               </div>
             )}
 
@@ -466,7 +448,7 @@ export default function EmployerEnquiryForm({
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>Matching Qualified Profiles...</span>
+                      <span>Sending your request...</span>
                     </>
                   ) : (
                     <>
@@ -481,9 +463,9 @@ export default function EmployerEnquiryForm({
                     Zero Placement Fees
                   </span>
                   <span>•</span>
-                  <span>Turnaround in 24–48 Hours</span>
+                  <span>Availability confirmed directly</span>
                   <span>•</span>
-                  <span>Direct HR WhatsApp Escalation</span>
+                  <span>Direct WhatsApp contact</span>
                 </div>
               </div>
             </form>

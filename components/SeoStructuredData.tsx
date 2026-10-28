@@ -21,7 +21,7 @@ export default function SeoStructuredData({
     { name: "Hire From Us", item: "https://devopsmumbai.com/hire-from-us" }
   ]
 }: SeoProps) {
-  // 1. Organization & Local Business Schema (with Google Review 4.7★ from 130 reviews)
+  // 1. Organization & Local Business Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": ["EducationalOrganization", "LocalBusiness"],
@@ -31,42 +31,19 @@ export default function SeoStructuredData({
     "url": "https://devopsmumbai.com/",
     "logo": "https://devopsmumbai.com/logo-blue-cropped.png",
     "image": "https://devopsmumbai.com/campus/campus-classroom.webp",
-    "description": "Mumbai's leading practical cloud & DevOps institute. Training and hiring portal for pre-screened L1/L2 Support, DevOps, and Cloud engineers.",
+    "description": "DevOps and cloud training institute in Mumbai with candidate profiles for support, infrastructure and engineering roles.",
     "telephone": portalInfo.phone,
     "email": portalInfo.email,
     "priceRange": "₹0 (Free Placement Drives for Employers)",
-    "address": [
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "Lodha Supremus, B 1307, Saki Vihar Rd, Tunga Village, Chandivali",
-        "addressLocality": "Powai, Mumbai",
-        "addressRegion": "Maharashtra",
-        "postalCode": "400072",
-        "addressCountry": "IN"
-      },
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "2nd Floor, Awfis, Kalpataru Prime, Neheru Nagar, Wagle Industrial Estate",
-        "addressLocality": "Thane West, Thane",
-        "addressRegion": "Maharashtra",
-        "postalCode": "400604",
-        "addressCountry": "IN"
-      }
-    ],
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 19.1176,
-      "longitude": 72.8943
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "130",
-      "bestRating": "5",
-      "worstRating": "1"
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": portalInfo.address,
+      "addressLocality": "Thane West",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400604",
+      "addressCountry": "IN"
     },
     "sameAs": [
-      "https://www.google.com/maps",
       "https://www.instagram.com/devopsinstituteinmumbai/"
     ]
   };
@@ -81,6 +58,23 @@ export default function SeoStructuredData({
       "name": crumb.name,
       "item": crumb.item
     }))
+  };
+
+  const webpageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonicalUrl}#webpage`,
+    "url": canonicalUrl,
+    "name": pageTitle,
+    "description": pageDescription,
+    "inLanguage": "en-IN",
+    "about": roleName,
+    "isPartOf": {
+      "@id": "https://devopsmumbai.com/#website"
+    },
+    "publisher": {
+      "@id": "https://devopsmumbai.com/#organization"
+    }
   };
 
   // 3. FAQPage Schema for Expandable Rich Results in Google
@@ -101,6 +95,7 @@ export default function SeoStructuredData({
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${canonicalUrl}#service`,
     "name": `Hire ${roleName} - DevOps Institute Mumbai`,
     "serviceType": "Technical Recruitment & Placement Drives",
     "provider": {
@@ -117,7 +112,7 @@ export default function SeoStructuredData({
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "INR",
-      "description": "Zero placement fees for employers. Fast turnaround in 24 to 48 hours."
+      "description": "No placement fee for employers."
     }
   };
 
@@ -130,6 +125,10 @@ export default function SeoStructuredData({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
       />
       {faqSchema && (
         <script

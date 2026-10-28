@@ -3,6 +3,16 @@ import { Resend } from 'resend';
 import fs from 'fs';
 import path from 'path';
 
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  })[character] || character);
+}
+
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
@@ -99,6 +109,17 @@ export async function POST(req: NextRequest) {
         const resend = new Resend(apiKey);
         const cleanPhone = phone.replace(/[^0-9+]/g, '');
         const waPhone = cleanPhone.replace(/^\+/, '');
+        const htmlCompanyName = escapeHtml(companyName);
+        const htmlContactPerson = escapeHtml(contactPerson);
+        const htmlEmail = escapeHtml(email);
+        const htmlPhone = escapeHtml(phone);
+        const htmlHiringRole = escapeHtml(hiringRole);
+        const htmlExperience = escapeHtml(experience);
+        const htmlLocation = escapeHtml(location);
+        const htmlOpenings = escapeHtml(openings);
+        const htmlSkills = escapeHtml(skills);
+        const htmlJdText = escapeHtml(jdText);
+        const htmlJdFileName = escapeHtml(jdFile?.name || '');
 
         // Bulletproof HTML email using standard tables with full Gmail/Outlook compatibility
         const emailHtml = `
@@ -165,7 +186,7 @@ export async function POST(req: NextRequest) {
                           Company Name
                         </td>
                         <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0f172a; font-weight: 700; width: 64%; text-align: right;">
-                          ${companyName}
+                          ${htmlCompanyName}
                         </td>
                       </tr>
                       <tr>
@@ -173,7 +194,7 @@ export async function POST(req: NextRequest) {
                           Contact Person
                         </td>
                         <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0f172a; font-weight: 700; text-align: right;">
-                          ${contactPerson}
+                          ${htmlContactPerson}
                         </td>
                       </tr>
                       <tr>
@@ -181,7 +202,7 @@ export async function POST(req: NextRequest) {
                           Phone Number
                         </td>
                         <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0284c7; font-weight: 700; text-align: right;">
-                          <a href="tel:${cleanPhone}" style="color: #0284c7; text-decoration: none;">${phone}</a>
+                          <a href="tel:${cleanPhone}" style="color: #0284c7; text-decoration: none;">${htmlPhone}</a>
                         </td>
                       </tr>
                       <tr>
@@ -189,7 +210,7 @@ export async function POST(req: NextRequest) {
                           Work Email
                         </td>
                         <td style="padding: 12px 16px; font-size: 14px; color: #0284c7; font-weight: 700; text-align: right;">
-                          <a href="mailto:${email}" style="color: #0284c7; text-decoration: none;">${email}</a>
+                          <a href="mailto:${htmlEmail}" style="color: #0284c7; text-decoration: none;">${htmlEmail}</a>
                         </td>
                       </tr>
                     </table>
@@ -214,7 +235,7 @@ export async function POST(req: NextRequest) {
                           Hiring Role
                         </td>
                         <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #1e3a8a; font-weight: 800; width: 64%; text-align: right;">
-                          ${hiringRole}
+                          ${htmlHiringRole}
                         </td>
                       </tr>
                       <tr>
@@ -222,7 +243,7 @@ export async function POST(req: NextRequest) {
                           Experience Needed
                         </td>
                         <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0f172a; font-weight: 700; text-align: right;">
-                          ${experience}
+                          ${htmlExperience}
                         </td>
                       </tr>
                       <tr>
@@ -230,7 +251,7 @@ export async function POST(req: NextRequest) {
                           Work Location &amp; Mode
                         </td>
                         <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0f172a; font-weight: 700; text-align: right;">
-                          ${location}
+                          ${htmlLocation}
                         </td>
                       </tr>
                       <tr>
@@ -238,7 +259,7 @@ export async function POST(req: NextRequest) {
                           Open Openings
                         </td>
                         <td style="padding: 12px 16px; border-bottom: ${skills ? '1px solid #e2e8f0' : 'none'}; font-size: 14px; color: #0f172a; font-weight: 700; text-align: right;">
-                          ${openings}
+                          ${htmlOpenings}
                         </td>
                       </tr>
                       ${skills ? `
@@ -247,7 +268,7 @@ export async function POST(req: NextRequest) {
                           Skills / Tech Stack
                         </td>
                         <td style="padding: 12px 16px; font-size: 13px; color: #0f172a; font-weight: 700; text-align: right;">
-                          ${skills}
+                          ${htmlSkills}
                         </td>
                       </tr>` : ''}
                     </table>
@@ -267,7 +288,7 @@ export async function POST(req: NextRequest) {
                 </tr>
                 <tr>
                   <td style="background-color: #f8fafc; border-left: 4px solid #0284c7; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; border-radius: 0 10px 10px 0; padding: 14px 18px; font-size: 13px; line-height: 1.6; color: #334155; white-space: pre-wrap;">
-${jdText}
+${htmlJdText}
                   </td>
                 </tr>
               </table>` : ''}
@@ -286,7 +307,7 @@ ${jdText}
                         </td>
                         <td style="vertical-align: middle; padding-left: 10px;">
                           <p style="margin: 0; font-size: 14px; font-weight: 700; color: #14532d;">
-                            ${jdFile.name}
+                            ${htmlJdFileName}
                           </p>
                           <p style="margin: 2px 0 0 0; font-size: 12px; color: #15803d;">
                             Attached as email attachment (${(jdFile.size / 1024).toFixed(1)} KB)
@@ -303,7 +324,7 @@ ${jdText}
                 <tr>
                   <td align="center">
                     <p style="margin: 0 0 14px 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b;">
-                      Quick Response to ${contactPerson}:
+                      Quick Response to ${htmlContactPerson}:
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
@@ -313,12 +334,12 @@ ${jdText}
                           </a>
                         </td>
                         <td style="padding: 0 5px;">
-                          <a href="https://wa.me/${waPhone}?text=Hello%20${encodeURIComponent(contactPerson)}%2C%20thank%20you%20for%20contacting%20DevOps%20Institute%20Mumbai%20regarding%20your%20${encodeURIComponent(hiringRole)}%20requirement%20(Ref%3A%20${submissionId})." style="display: inline-block; background-color: #16a34a; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none;">
+                          <a href="https://wa.me/${waPhone}?text=Hello%20${escapeHtml(encodeURIComponent(contactPerson))}%2C%20thank%20you%20for%20contacting%20DevOps%20Institute%20Mumbai%20regarding%20your%20${escapeHtml(encodeURIComponent(hiringRole))}%20requirement%20(Ref%3A%20${submissionId})." style="display: inline-block; background-color: #16a34a; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none;">
                             💬 WhatsApp
                           </a>
                         </td>
                         <td style="padding: 0 5px;">
-                          <a href="mailto:${email}?subject=Shortlisted%20Candidate%20Profiles%20for%20${encodeURIComponent(companyName)}%20(Ref%3A%20${submissionId})" style="display: inline-block; background-color: #1e3a8a; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none;">
+                          <a href="mailto:${htmlEmail}?subject=Shortlisted%20Candidate%20Profiles%20for%20${escapeHtml(encodeURIComponent(companyName))}%20(Ref%3A%20${submissionId})" style="display: inline-block; background-color: #1e3a8a; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none;">
                             ✉️ Reply Email
                           </a>
                         </td>
@@ -375,12 +396,23 @@ ${jdText}
       console.warn('RESEND_API_KEY is not defined. Lead was logged to disk backup.');
     }
 
+    if (!emailSent) {
+      console.error('Hiring request was not delivered to the placement desk:', emailError || 'Email delivery is not configured.');
+      return NextResponse.json(
+        {
+          error: 'We could not deliver your request to the placement desk. Please call or email us directly.',
+          submissionId,
+        },
+        { status: 503 }
+      );
+    }
+
     return NextResponse.json({
       success: true,
       submissionId,
-      emailSent,
+      emailSent: true,
       hasFile: attachments.length > 0,
-      note: emailSent ? 'Email dispatched to placement desk.' : 'Recorded in local backup log.',
+      note: 'Email dispatched to placement desk.',
     });
   } catch (error: any) {
     console.error('Error handling hiring request:', error);

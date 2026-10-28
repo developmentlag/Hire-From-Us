@@ -2,21 +2,54 @@ export const portalInfo = {
   name: "DIM",
   shortName: "DevOps Institute",
   fullName: "DevOps Institute - AWS, Azure & GCP Course Mumbai",
-  tagline: "Hire Job-Ready DevOps & Cloud Talent",
+  tagline: "Hire Pre-Screened DevOps & Cloud Talent | Direct Placement Desk",
   phone: "+91 91361 55079",
   phoneTel: "tel:+919136155079",
   whatsappNumber: "919136155079",
-  whatsappUrl: "https://wa.me/919136155079?text=Hello%20DevOps%20Institute%2C%20we%20want%20to%20hire%20DevOps%20%26%20Cloud%20talent%20for%20our%20team.",
+  whatsappUrl: "https://wa.me/919136155079?text=Hello%20DevOps%20Institute%2C%20we%20want%20to%20hire%20Pre-Screened%20DevOps%20%26%20Cloud%20talent%20for%20our%20team.",
   email: "careers@devopsinstitutemumbai.co.in",
   address: "2nd Floor, Awfis, Kalpataru Prime, Wagle Industrial Estate, Thane West, Maharashtra 400604",
   shortAddress: "Kalpataru Prime, Wagle Estate, Thane West",
   heroStats: [
-    { label: "Job-Ready Talent", value: "250+", subtext: "Freshers & Lateral Engineers" },
-    { label: "Shortlist SLA", value: "24-48h", subtext: "Fast-track interview dispatch" },
-    { label: "Hands-on Practical", value: "100%", subtext: "Live AWS, Azure & Linux Labs" },
-    { label: "Placement Drive Fee", value: "₹0", subtext: "Zero cost hiring drives" },
+    { label: "Candidate profiles", value: "Role-matched", subtext: "Ask us about current availability" },
+    { label: "Profile details", value: "Skills & projects", subtext: "Review before you interview" },
+    { label: "Hiring process", value: "Direct coordination", subtext: "Speak with our placement desk" },
+    { label: "Employer fee", value: "₹0", subtext: "No placement fee" },
   ]
 };
+
+export const preScreeningStages = [
+  {
+    step: "01",
+    title: "Practical Training",
+    badge: "Hands-on learning",
+    desc: "Candidates train through practical exercises in Linux, cloud infrastructure, containers and deployment workflows."
+  },
+  {
+    step: "02",
+    title: "Role-Relevant Skills",
+    badge: "Discuss the brief",
+    desc: "Share the tools and experience your opening requires so we can discuss relevant candidate skills and current availability."
+  },
+  {
+    step: "03",
+    title: "Candidate Profile Review",
+    badge: "Evidence first",
+    desc: "Review the candidate's experience, listed skills and project details before deciding whether to schedule an interview."
+  },
+  {
+    step: "04",
+    title: "Your Interview, Your Decision",
+    badge: "Employer-led",
+    desc: "You choose the interview format and assess each candidate against your own technical and hiring criteria."
+  },
+  {
+    step: "05",
+    title: "Clear Coordination",
+    badge: "No placement fee",
+    desc: "Coordinate interviews directly with our placement desk. We do not charge employers a placement fee for candidate referrals."
+  }
+];
 
 export const hiringRoles = [
   { id: 'jr-devops', title: 'Junior DevOps Engineer', category: 'fresher', popular: true, description: 'Hands-on CI/CD pipelines, Docker containerization, Git workflows & Linux CLI' },
@@ -36,32 +69,32 @@ export const whyHireFromDim = [
   {
     icon: 'GraduationCap',
     title: 'Industry-Aligned DevOps and Cloud Training',
-    description: 'Our curriculum is built and mentored by active cloud architects, focusing on real-world engineering problem statements and live infrastructure scenarios rather than shallow slides.'
+    description: 'Training focuses on practical exercises related to DevOps, cloud infrastructure and common operations workflows.'
   },
   {
     icon: 'Terminal',
     title: 'Candidates with Hands-on Capstone Projects',
-    description: 'Every candidate has built end-to-end multi-tier AWS environments, Dockerized microservices, automated Terraform IaC modules, and Prometheus/Grafana observability suites.'
+    description: 'Ask about the projects and practical work relevant to an individual candidate before arranging an interview.'
   },
   {
     icon: 'Layers',
     title: 'Skills in Linux, AWS, Terraform, Docker, Kubernetes, CI/CD',
-    description: 'Proficiency in the core modern cloud stack. Candidates are pre-evaluated on command line diagnostics, automated deployments, container networking, and infrastructure-as-code.'
+    description: 'Candidate profiles may cover Linux, cloud infrastructure, containers, automation and monitoring. Specific skills and experience vary by person.'
   },
   {
     icon: 'CheckCircle2',
     title: 'Pre-Screened Profiles for Faster Hiring',
-    description: 'We eliminate first-round screening fatigue. Every profile forwarded to your recruitment team has already cleared technical practical exams and mock panel interviews.'
+    description: 'Review candidate experience and listed skills, then use your own interview process to evaluate fit for the role.'
   },
   {
     icon: 'Building2',
     title: 'Suitable for Startups, MSPs, Enterprises, and Support Teams',
-    description: 'Whether you need 24x7 L1 shift engineers for an MSP, agile DevOps generalists for a funded startup, or enterprise infrastructure specialists, we match exact profiles.'
+    description: 'Discuss your team, location and role requirements with the placement desk so we can check whether relevant profiles are available.'
   },
   {
     icon: 'Zap',
     title: 'Faster Coordination for Interviews and Hiring Drives',
-    description: 'Dedicated recruitment accounts manager, prompt slot scheduling, immediate resume access, and tailored campus/virtual hiring drives organized with zero friction.'
+    description: 'Our team can coordinate communication about candidate profiles and interview arrangements with your hiring team.'
   }
 ];
 
@@ -69,84 +102,68 @@ export const hiringProcessSteps = [
   {
     step: '01',
     title: 'Share your requirement / JD',
-    description: 'Submit your open positions, required skill stack, experience level, salary band, and work location through our quick employer form.',
-    highlight: '2-Minute Process'
+    description: 'Tell us the role, skills, experience, location and hiring timeline you have in mind.',
+    highlight: 'No commitment'
   },
   {
     step: '02',
-    title: 'Receive shortlisted profiles',
-    description: 'Our technical placement team curates and shares pre-evaluated candidates with capstone project links and skills matrices within 24–48 hours.',
-    highlight: 'Within 24–48 Hours'
+    title: 'Discuss relevant profiles',
+    description: 'Our placement desk will discuss candidate fit and availability with you before sharing profiles.',
+    highlight: 'Availability confirmed'
   },
   {
     step: '03',
     title: 'Conduct interviews',
-    description: 'Schedule one-on-one virtual technical rounds, coding assignments, or host an exclusive dedicated hiring drive.',
-    highlight: 'Virtual or On-Campus'
+    description: 'Review the profiles and choose your own interview format and assessment process.',
+    highlight: 'Your interview process'
   },
   {
     step: '04',
     title: 'Hire suitable candidates',
-    description: 'Extend offers and onboard high-performing DevOps, Cloud Support, or SRE professionals with immediate or 15–30 day joining.',
-    highlight: 'Immediate Onboarding'
-  }
-];
-
-export const hiringPartners = [
-  { name: 'Amazon Web Services', tag: 'Cloud Partner' },
-  { name: 'Deloitte', tag: 'Consulting' },
-  { name: 'Jio Platforms', tag: 'Telecom & Tech' },
-  { name: 'Tata Consultancy Services', tag: 'IT Services' },
-  { name: 'Zomato', tag: 'Consumer Tech' },
-  { name: 'Swiggy', tag: 'Hyperlocal' },
-  { name: 'Razorpay', tag: 'Fintech' },
-  { name: 'BrowserStack', tag: 'Dev Tools' },
-  { name: 'Tech Mahindra', tag: 'Enterprise IT' },
-  { name: 'LTIMindtree', tag: 'Digital Solutions' },
-  { name: 'Persistent Systems', tag: 'Software Engineering' },
-  { name: 'Hexaware', tag: 'Cloud Managed Services' }
-];
-
-export const hiringTestimonials = [
-  {
-    quote: "DIM candidates have an unmatched practical grip on Linux and AWS fundamentals. We hired 4 Cloud Support engineers in a single drive and all of them were productive from week one.",
-    name: "Rohit Deshmukh",
-    role: "VP of Cloud Engineering",
-    company: "Apex Cloud Services, Mumbai"
-  },
-  {
-    quote: "Finding candidates who actually understand CI/CD and Terraform IaC without just reading slides is rare. DIM's pre-screening saved our team over 40 hours of first-round screening.",
-    name: "Sneha Nair",
-    role: "Talent Acquisition Lead",
-    company: "SaaSify Technologies"
-  },
-  {
-    quote: "We needed 24x7 NOC monitoring resources on immediate notice. DevOps Institute shared 6 filtered profiles within 24 hours, and we closed 2 hires the very next day.",
-    name: "Amitabh Sen",
-    role: "Director of Infrastructure",
-    company: "CloudCore MSP"
+    description: 'Make the hiring decision that works for your team. There is no placement fee for employers.',
+    highlight: '₹0 placement fee'
   }
 ];
 
 export const employerFaqs = [
   {
-    question: "Are there any charges or recruitment fees for hiring from DIM?",
-    answer: "No. Standard campus hiring drives and candidate shortlist dispatches from DIM are 100% free of charge for employers. There are zero placement commissions or upfront agency retainers."
+    question: "How can my company hire pre-screened DevOps and cloud candidates from DIM?",
+    answer: "Browse the candidate profiles on this page and send the DIM placement desk your role, experience range, location and required skills. We review profile information for role-relevant skills and projects, discuss suitable referrals and confirm individual availability. Your hiring team conducts interviews and makes the final decision."
   },
   {
-    question: "How fast can we receive shortlisted candidate profiles?",
-    answer: "Once you share your JD or hiring criteria through the enquiry form, our recruitment team curates and forwards matched, pre-screened profiles within 24 to 48 hours."
+    question: "What does pre-screened mean for DevOps Institute Mumbai candidate referrals?",
+    answer: "Candidate profiles are reviewed for role-relevant information such as stated skills, experience and project details before referral. Candidate backgrounds vary, so employers should review the individual profile and use their own technical interviews or assessments to verify fit."
   },
   {
-    question: "Can we conduct on-campus hiring drives or online interview rounds?",
-    answer: "Yes! You can choose virtual Zoom/Google Meet interviews, offline interview drives at our campus facilities, or a hybrid arrangement."
+    question: "Which DevOps, cloud, IT support and operations roles can employers hire for through DIM?",
+    answer: "Employers can enquire about candidate profiles for DevOps engineering, cloud support, Linux support, L1 service desk, L2 application support, production support, monitoring and related infrastructure roles. Available experience and skills depend on current individual profiles."
   },
   {
-    question: "What kind of hands-on technical assessments have these candidates passed?",
-    answer: "Candidates undergo 400+ hours of lab work including deploying multi-AZ VPC architectures, configuring Kubernetes clusters, writing Terraform IaC, building Jenkins CI/CD pipelines, and triaging Prometheus/Grafana alerts."
+    question: "Does DIM have entry-level and experienced DevOps candidates?",
+    answer: "Candidate profiles may cover different career stages, from entry-level support and junior cloud or DevOps roles to experienced engineering and operations work. Share your required seniority and responsibilities so the placement desk can discuss relevant profiles currently available."
   },
   {
-    question: "What is the typical notice period for your candidates?",
-    answer: "Our freshers and entry-level talent are available for immediate joining. Lateral and experienced candidates have notice periods ranging from immediate up to 15–30 days."
+    question: "What skills may be included in a DevOps or cloud candidate profile?",
+    answer: "Depending on the person, profile details may include Linux, cloud platforms, AWS, infrastructure automation, Docker, Kubernetes, CI/CD, monitoring, support workflows and project experience. Skills and proficiency vary by candidate, so confirm role-specific evidence before interviewing."
+  },
+  {
+    question: "How does DIM match candidate profiles to an employer’s job description?",
+    answer: "Share the role, required skills, experience level, location and other must-haves with the placement desk. The team can discuss candidate profile information against your brief and confirm whether relevant profiles are currently available; employers make the final fit assessment."
+  },
+  {
+    question: "How quickly can an employer receive DevOps candidate profiles?",
+    answer: "Shortlist timing depends on the role requirements and current candidate availability. Send your job description and hiring timeline to the placement desk, which can confirm the next step without promising a fixed turnaround before checking."
+  },
+  {
+    question: "Can employers interview candidates online or arrange a hiring drive?",
+    answer: "Interview format and hiring-drive arrangements can be discussed with the placement desk. Share your preferred online or in-person format, location and schedule so the team can confirm what can be coordinated."
+  },
+  {
+    question: "Can DIM confirm candidate availability, notice period and work location?",
+    answer: "Yes. Availability, notice period, location preference and joining timeline are candidate-specific and may change. The placement desk confirms current details for relevant profiles when you enquire."
+  },
+  {
+    question: "Does DevOps Institute Mumbai charge employers a placement or recruitment fee?",
+    answer: "No. DIM does not charge employers a placement fee for candidate referrals. Contact the placement desk by phone or submit the hiring enquiry form to discuss your open role."
   }
 ];
